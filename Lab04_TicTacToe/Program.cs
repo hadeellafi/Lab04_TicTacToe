@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab04_TicTacToe.Classes;
+using System;
 
 namespace Lab04_TicTacToe
 {
@@ -6,14 +7,38 @@ namespace Lab04_TicTacToe
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Tic Tac Toe game!");
+                StartGame();
+
+                Console.WriteLine("Do you want to play again? (y/n)");
+            } while (Console.ReadLine().ToLower() == "y");
+
+            Console.WriteLine("Thank you for playing Tic Tac Toe!");
         }
 
         static void StartGame()
         {
-            // TODO: Setup your game. Create a new method that creates your players and instantiates the game class. Call that method in your Main method.
-            // You are requesting a Winner to be returned, Determine who the winner is output the celebratory message to the correct player. If it's a draw, tell them that there is no winner. 
+            Player p1 = new Player();
+            p1.Name = "player1";
+            p1.Marker = "X";
+            p1.IsTurn = true;
 
+            Player p2 = new Player();
+            p2.Name = "player2";
+            p2.Marker = "O";
+            p2.IsTurn = false;
+
+            Game game = new Game(p1, p2);
+            Player winner = game.Play();
+
+            if (winner == null)
+                Console.WriteLine("no winners!");
+            else
+                Console.WriteLine($"{winner.Marker} Wins!");
         }
 
 

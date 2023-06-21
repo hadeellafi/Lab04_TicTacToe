@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Lab04_TicTacToe.Classes
 {
-    class Player
+    public class Player
     {
 		public string Name { get; set; }
 		/// <summary>
@@ -50,8 +50,8 @@ namespace Lab04_TicTacToe.Classes
 			}
 		}
 
-	
-		public void TakeTurn(Board board)
+	// fuction retrun true if the plar choose avilable position otherwise false
+		public bool TakeTurn(Board board)
 		{
 			IsTurn = true;
 
@@ -62,10 +62,12 @@ namespace Lab04_TicTacToe.Classes
 			if (Int32.TryParse(board.GameBoard[position.Row, position.Column], out int _))
 			{
 				board.GameBoard[position.Row, position.Column] = Marker;
+				return true;
 			}
 			else
 			{
 				Console.WriteLine("This space is already occupied");
+				return false;
 			}
 		}
 	}
